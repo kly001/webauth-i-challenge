@@ -17,7 +17,7 @@ router.post('/hash', (req,res) => {
   const password = req.body.password
 
   // hash the password
-  const hash = bcrypt.hashSync(password,8)
+  const hash = bcrypt.hashSync(password, 8)
 
   // return it to the users n a object that looks like
   // {password:'original password', hash:'hashed password'}
