@@ -1,9 +1,13 @@
 const express = require('express');
+const Users = require('./users-model.js');
+const router = express.Router()
 
-const db = require('../data/db-config.js')
-
-const router = express.Router();
-
-
-
-module.exports = router;
+router.get('/', (req,res) => {
+    Users.find()
+    .then(users => {
+        res.status(200).json(users)
+    })
+    .catch(err => {
+        res.status(500).json(err)
+    })
+})
