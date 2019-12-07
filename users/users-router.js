@@ -1,6 +1,6 @@
-const express = require('express');
+const router = require('express').Router();
 const Users = require('./users-model.js');
-const router = express.Router()
+
 
 router.get('/', (req,res) => {
     Users.find()
@@ -11,3 +11,5 @@ router.get('/', (req,res) => {
         res.status(500).json(err)
     })
 })
+
+module.exports = router;
