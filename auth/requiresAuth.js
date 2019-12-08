@@ -10,13 +10,13 @@ module.exports = (req, res,next)=> {
       Users.findBy({username})
       .first()
       .then(user => {
-        if(user && bcrypt.compareSync(password, _user.password)){
+        if(user && bcrypt.compareSync(password, user.password)){
           next()
         } else {
           res.status(401).json({message:"Invalid Credentials"})
         }
       })
-      .catch((err) => { res.status(500).json({ messege: err }) })
+      .catch((err) => { res.status(500).json({ message: err }) })
       }
     }
 
