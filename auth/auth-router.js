@@ -24,7 +24,8 @@ router.post('/login',(req,res) => {
   .first()
   .then(user => {
     if(user && bcrypt.compareSync(password, user.password)) {
-      // check to see if password is valid
+     
+      req.session.user = user
 
       res.status(200).json({message:`Congratulations, ${user.username}. You are now logged in !`})
     } else {
