@@ -38,4 +38,18 @@ router.post('/login',(req,res) => {
 
 })
 
+router.delete('/logout', (req,res) => {
+  if (req.session) {
+    req.session.destroy((err) => {
+      if(err) {
+        res.status(400).send('You cannot leave !');
+      } else {
+        res.send("You made it out.  Later 'gator !")
+      }
+    })
+  } else {
+    res.end();
+  }
+})
+
 module.exports = router
