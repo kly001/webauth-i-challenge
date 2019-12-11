@@ -44,7 +44,7 @@ router.delete('/logout', (req,res) => {
       if(err) {
         res.status(400).send('You cannot leave !');
       } else {
-        res.send("You made it out.  Later 'gator !")
+        res.send("You are logged out.  See ya !")
       }
     })
   } else {
