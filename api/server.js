@@ -1,4 +1,5 @@
 const session = require('express-session');
+const knexSessionStore = require('connect-session-knex')(session);
 const express = require('express');
 
 const apiRouter = require('./api-router.js');
@@ -14,7 +15,15 @@ const sessionOptions = {
     httpOnly: true
   },
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+
+  store: new knexSessionStore ({
+    knex: require('../database/db-config.js'),
+    tablename: 'sessions',
+    sidfieldname: 'sid',
+    createTable: true,
+    clearInterval: 1000 * 60 * 60
+  })
 }
 const server = express();
 
